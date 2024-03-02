@@ -1,7 +1,7 @@
 import logging
 
 
-def configure_logger(level=logging.DEBUG, log_to_terminal=True, log_to_file=False, file_path='logs.txt'):
+def configure_logger(level=logging.INFO, log_to_terminal=True, log_to_file=False, file_path='logs.txt'):
     logger = logging.getLogger(__name__)
     logger.setLevel(level)
     formatter = logging.Formatter("%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s",
@@ -20,3 +20,8 @@ def configure_logger(level=logging.DEBUG, log_to_terminal=True, log_to_file=Fals
         logger.addHandler(file_handler)
 
     return logger
+
+
+def validate_password_len(pwd: str):
+    if len(pwd) < 8:
+        raise ValueError(f"Password {pwd} too short")
